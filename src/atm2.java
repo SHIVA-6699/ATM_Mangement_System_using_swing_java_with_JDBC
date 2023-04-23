@@ -68,6 +68,7 @@ class atm2 extends JFrame implements ActionListener
     but2.setBackground(Color.BLACK);
     but2.setForeground(Color.GREEN);
     this.add(but2);
+    but2.addActionListener(this);
 
     // BUTTON 3
 
@@ -86,6 +87,7 @@ class atm2 extends JFrame implements ActionListener
     but4.setBackground(Color.BLACK);
     but4.setForeground(Color.GREEN);
     this.add(but4);
+    but4.addActionListener(this);
     this.setVisible(true);
 // Button 5
 but5.setBounds(523,273,270,58);
@@ -114,7 +116,7 @@ this.setVisible(true);
             this.toBack();
             setVisible(false);
             new atm().toFront();
-            new atm().setState(java.awt.Frame.NORMAL);
+//            new atm().setState(java.awt.Frame.NORMAL);
         }
         if(e.getSource()==but3)
         {
@@ -138,6 +140,20 @@ this.setVisible(true);
         
          
           
+        }
+        if(e.getSource()==but2)
+        {
+            this.dispose();
+            atm5 demo=new atm5();
+            demo.setVisible(true);
+            demo.toFront();
+        }
+        if(e.getSource()==but4)
+        {
+            this.dispose();
+            atm6 demo=new atm6();
+            demo.setVisible(true);
+            demo.toFront();
         }
     }
 

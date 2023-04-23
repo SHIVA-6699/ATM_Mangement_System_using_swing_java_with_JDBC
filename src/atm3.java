@@ -18,7 +18,7 @@ class atm3 extends JFrame implements ActionListener
     JFrame frame;
     JLabel label,label2,label3,label4;
     JButton but1 ,but2,but3,but4,but5,but6,but7,but8;
-   static JTextField text;
+   static JTextField text,text1;
     static   int num;
 
    static String str,str2;
@@ -39,17 +39,25 @@ class atm3 extends JFrame implements ActionListener
      but7=new JButton();
      but8=new JButton();
      text=new JTextField();
-     text.setBounds(300,390,340,34);
+     text.setBounds(300,450,340,34);
     text.setFont(f1);
     text.setHorizontalAlignment(JTextField.CENTER);
      this.add(text);
 
-   label3=new JLabel();
+        label3=new JLabel();
+        label3.setText("Enter Your UserPin");
+        label3.setBounds(400,338,450,50);
+        label3.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,20));
+        this.add(label3);
+        text1 =new JTextField();
+        text1.setBounds(330,380,300,50);
+        text1.setHorizontalAlignment(JTextField.CENTER);
+        this.add(text1);
 
      label2=new JLabel();
      label2.setText("Choose Your Amount");
      label2.setForeground(Color.black);
-    label2.setBounds(360,-159,299,399);
+    label2.setBounds(400,-159,299,399);
      label2.setFont(f);
      
     this.add(label2);
@@ -144,7 +152,8 @@ but8.addActionListener(this);
 
     public void actionPerformed(ActionEvent e) {
 
-      int num2=3;
+      int num2=3,num3;
+      num3=Integer.parseInt(text1.getText());
         if(e.getSource()==but7)
         {
             text.setText("");
@@ -176,7 +185,7 @@ but8.addActionListener(this);
 //
 //
 //            }
-                ResultSet resultSet = statement.executeQuery("select * from mysql2 where id=1");
+                ResultSet resultSet = statement.executeQuery("select * from mysql2 where id="+num3+";");
                 while(resultSet.next())
                 {
                     Amount=(resultSet.getInt(1));
@@ -186,7 +195,7 @@ but8.addActionListener(this);
                 num=Integer.parseInt(str);
                 num1=Amount-num;
                 str2=Integer.toString(num1);
-                statement.execute("update mysql2 set amount="+num1+" where id=1;");
+                statement.execute("update mysql2 set amount="+num1+" where id="+num3+";");
                 java.lang.System.out.println("succesfully updated");
                 connection.close();
             } catch (Exception es) {
@@ -196,7 +205,7 @@ but8.addActionListener(this);
 
 //            database end
 
-            JOptionPane.showMessageDialog(frame,"Please Collect Your Amount","BALANCE",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(frame,"Please Check your Phone Pay/Google Pay/Paytm","BALANCE",JOptionPane.INFORMATION_MESSAGE);
             text.setText("");   
         }
         if(e.getSource()==but2)
@@ -226,7 +235,7 @@ but8.addActionListener(this);
            this.toBack();
             setVisible(false);
             new atm2().toFront();
-            new atm2().setState(java.awt.Frame.NORMAL);
+//            new atm2().setState(java.awt.Frame.NORMAL);
             this.dispose();
      }
     }
